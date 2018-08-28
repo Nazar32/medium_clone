@@ -1,0 +1,16 @@
+{
+  "instance": {
+    "port": 4000
+  },
+  "storage": {
+    "connection": "mongodb://medium:qwerty123@ds129051.mlab.com:29051/medium"
+  },
+  "authentication": {
+    "token": {
+      "secret": "gwrLCfOfisTZEoFRZCho0bVikGGOVa09",
+      "expires": {
+        "days": 1
+      }
+    }
+  }
+}

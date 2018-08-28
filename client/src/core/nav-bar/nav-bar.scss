@@ -1,0 +1,16 @@
+.navBar {
+  display: flex;
+
+  .navBar_item {
+    flex: 1;
+  }
+
+  .navBar_item--centered {
+    text-align: center;
+  }
+
+  .navBar_title {
+    font-size: 2em;
+    font-weight: bolder;
+  }
+}
