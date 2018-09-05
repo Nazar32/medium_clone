@@ -3,6 +3,7 @@
 const express = require('express');
 const graphql = require('express-graphql');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const config = require('./config');
 const schema = require('./schema');
@@ -23,8 +24,9 @@ const AuthStrategy = require('./services/AuthStrategy.service');
 passport.use(AuthStrategy.getPassportJWTStrategy());
 app.use(passport.initialize());
 
-app.all('*', function(req, res, next) {
-    passport.authenticate('bearer', function(err, user) {
+app.use(cors()); // enable cors
+app.all('*', function (req, res, next) {
+    passport.authenticate('bearer', function (err, user) {
         if (err)
             return next(err);
 
@@ -44,12 +46,14 @@ app.use('/graphql', graphql({
 /**
  * Establish DB Connection
  */
-mongoose.connect(config.storage.connection);
+mongoose.connect(config.storage.connection, {
+    useNewUrlParser: true
+});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-   console.log('Storage connection established successfully');
+db.once('open', function () {
+    console.log('Storage connection established successfully');
 
-   app.listen(config.instance.port,
-       () => console.log(`Application is listening on port ${4000}`));
+    app.listen(config.instance.port,
+        () => console.log(`Application is listening on port ${4000}`));
 });

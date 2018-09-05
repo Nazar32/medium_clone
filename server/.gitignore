@@ -1,2 +1,4 @@
 # development environment
-.vscode/
+.idea/
+
+node_modules/
