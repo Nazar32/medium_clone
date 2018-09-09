@@ -2,10 +2,11 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
+import { LoadingIcon } from '../../common';
 import './LocalSignUpControls.scss';
 
 const LocalSignUpControls = ({
-  step, stepAmount, onPrev, onNext, onComplete
+  valid, step, stepAmount, loading, onPrev, onNext, onComplete
 }) => (
   <Fragment>
     {
@@ -31,9 +32,10 @@ const LocalSignUpControls = ({
       step === stepAmount - 1 && (
         <Button
           className="control" variant="contained" color="primary"
-          onClick={onComplete}
+          onClick={onComplete} disabled={!valid || loading}
         >
           Submit
+          {loading === true ? (<LoadingIcon />) : null}
         </Button>
       )
     }
@@ -41,6 +43,8 @@ const LocalSignUpControls = ({
 );
 
 LocalSignUpControls.propTypes = {
+  valid: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   step: PropTypes.number.isRequired,
   stepAmount: PropTypes.number.isRequired,
   onNext: PropTypes.func.isRequired,

@@ -1,16 +1,26 @@
 .modal {
   position: absolute;
-  top: 25%;
-  left: 30%;
-  width: 40%;
-  margin: auto;
   background-color: white;
 
-  .modal_title {
+  &_title {
     text-align: center;
   }
 
-  .modal_content {
+  &_content {
     padding: 25px;
+  }
+
+  &--normal {
+    top: 25%;
+    left: 30%;
+    width: 40%;
+    margin: auto;
+  }
+
+  &--fullScreen {
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
   }
 }

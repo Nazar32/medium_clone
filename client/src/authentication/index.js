@@ -1,7 +1,7 @@
-import SignUp from './sign-up/SignUp.compoment';
-import SignUpModal from './modals/SignUpModal.component';
+import SignUpButton from './sign-up/SignUpButton';
+import SignUpModal from './modals/SignUpModal';
 
 export {
-  SignUp,
+  SignUpButton,
   SignUpModal
 };

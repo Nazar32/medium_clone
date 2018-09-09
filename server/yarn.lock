@@ -1093,6 +1093,10 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+express-bearer-token@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/express-bearer-token/-/express-bearer-token-2.2.0.tgz#9e01bbb8a29791f1dc317e168543acac76bc989f"
+
 express-graphql@^0.6.12:
   version "0.6.12"
   resolved "https://registry.yarnpkg.com/express-graphql/-/express-graphql-0.6.12.tgz#dfcb2058ca72ed5190b140830ad8cdbf76a9128a"

@@ -3,7 +3,6 @@ const {
 	GraphQLObjectType,
 	GraphQLString,
 	GraphQLSchema,
-	GraphQLDirective,
 	GraphQLNonNull
 } = graphql;
 
@@ -32,11 +31,21 @@ const RootQuery = new GraphQLObjectType({
 		me: {
 			type: UserType,
 			async resolve(parentValue, args, request) {
-				console.log('Request User', request.user.id);
-				if (!request.user)
-					throw new Error('You are not authenticated');
+				// get bearer token of the request object provided by graphql-express
+				const { token } = request;
+				if (!token) {
+					return null;
+				}
 
-				return await UserModel.findById(request.user.id).exec();
+				const userId = await AuthStrategy.verifyToken(token);
+				const user = await UserModel.findById(userId).exec();
+				if (!user) {
+					throw new Error('Invalid token');
+				}
+
+				request.user = user;
+				const { id, firstName, lastName } = user;
+				return { id, firstName, lastName };
 			}
 		}
 	}

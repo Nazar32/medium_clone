@@ -1,16 +1,14 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import './styles/App.scss';
 
-import NavBar from './core';
-import { SignUp } from './authentication';
+import NavBar from './navigation';
+import Notifier from './common/Notifier';
 
 const App = () => (
   <div className="webPage">
+    <Notifier />
     <NavBar />
-    <div className="webPage_content">
-      <Route path="/login" component={SignUp} />
-    </div>
+    <div className="webPage_content" />
     <div className="webPage_footer" />
   </div>
 );

@@ -2,6 +2,7 @@
 
 const express = require('express');
 const graphql = require('express-graphql');
+const expressBearerToken = require('express-bearer-token');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -16,24 +17,8 @@ app.get('/', function (req, res) {
     res.send('App Works');
 });
 
-/**
- * Authentication Middleware
- */
-const passport = require('passport');
-const AuthStrategy = require('./services/AuthStrategy.service');
-passport.use(AuthStrategy.getPassportJWTStrategy());
-app.use(passport.initialize());
-
+app.use(expressBearerToken());
 app.use(cors()); // enable cors
-app.all('*', function (req, res, next) {
-    passport.authenticate('bearer', function (err, user) {
-        if (err)
-            return next(err);
-
-        req.user = user;
-        return next();
-    })(req, res, next);
-});
 
 /**
  * Graph QL Endpoint
