@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Button, Hidden, Typography } from '@material-ui/core';
 
-import SignUpModal from '../modals/SignUpModal';
+import SignInModal from './modals/SignInModal';
 
 const initialState = {
   isSignUpOpen: false
@@ -29,18 +29,18 @@ class SignUpButton extends Component {
         <Hidden xsDown>
           <Button variant="outlined" color="primary" onClick={this.openSignUpModal}>
             <Typography>
-              Get Started
+              Sign In
             </Typography>
           </Button>
-          <SignUpModal isOpen={isSignUpOpen} onClose={this.closeSignUpModal} />
+          <SignInModal isOpen={isSignUpOpen} onClose={this.closeSignUpModal} />
         </Hidden>
         <Hidden smUp>
           <Button variant="outlined" color="primary" onClick={this.openSignUpModal}>
             <Typography>
-              Get Started
+              Sign In
             </Typography>
           </Button>
-          <SignUpModal fullScreen isOpen={isSignUpOpen} onClose={this.closeSignUpModal} />
+          <SignInModal fullScreen isOpen={isSignUpOpen} onClose={this.closeSignUpModal} />
         </Hidden>
       </Fragment>
     );

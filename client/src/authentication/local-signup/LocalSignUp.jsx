@@ -82,12 +82,12 @@ class LocalSignUpForm extends Component {
       this.setState(initialState);
       return onComplete();
     } catch (error) {
-      this.setState({
+      return this.setState({
+        ...initialState,
         errors: {
           submit: error
         }
       });
-      return this.setState(initialState);
     }
   }
 
@@ -190,7 +190,7 @@ class LocalSignUpForm extends Component {
         <div className="localSignUp_controls">
           <LocalSignUpControls
             valid={this.canSubmit()}
-            loading={(loading) === true}
+            loading={loading === true}
             step={activeStep}
             stepAmount={steps.length}
             onNext={this.handleNext}

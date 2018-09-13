@@ -13,4 +13,14 @@
     font-size: 2em;
     font-weight: bolder;
   }
+
+  .authentication {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &_signInButton { 
+      margin-right: 1em;
+    }
+  }
 }

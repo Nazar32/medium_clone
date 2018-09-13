@@ -1,67 +1,111 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
+import {
+  Popper, Grow, Paper, MenuList, MenuItem, Divider,
+  Avatar, Button, ListItemText, ListItemIcon, ClickAwayListener
+} from '@material-ui/core';
+
+import ExitToApp from '@material-ui/icons/ExitToApp';
 import { withStyles } from '@material-ui/core/styles';
-import { ExitToApp } from '@material-ui/icons';
-// import List from '@material-ui/core/List';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Typography from '@material-ui/core/Typography';
+import { green } from '@material-ui/core/colors';
+import apolloClient from '../apolloClient';
+import './UserProfile.scss';
 
 const styles = () => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'center'
+  button: {
+    boxShadow: 'none'
   },
   avatar: {
-    position: 'relative',
-    height: 50,
-    width: 50,
-    border: '5px solid lightgray',
-    borderRadius: '50% 50% 0 50%',
-    backgroundColor: '#000'
-  },
-  avatarText: {
-    color: '#fff'
-  },
-  dropdown: {
-    position: 'absolute',
-    width: '35px',
-    left: '20px',
-    top: '44px',
-    backgroundColor: 'lightgray',
-    zIndex: -1,
-    borderRadius: '0 50% 0% 50%'
+    width: '100%',
+    height: 56,
+    backgroundColor: green[900]
   }
 });
 
 // TODO accept list for dropdown components
+class UserProfile extends Component {
+  constructor() {
+    super();
+    this.state = {
+      open: false
+    };
+  }
 
-const UserProfile = ({ classes, firstName, lastName }) => {
-  const mapCredentials = () => firstName.toUpperCase()[0] + lastName.toUpperCase()[0];
+  transformCredentials = () => {
+    const { firstName, lastName } = this.props;
+    return firstName.toUpperCase()[0] + lastName.toUpperCase()[0];
+  }
 
-  return (
-    <div className={classes.root}>
-      <ButtonBase className={classes.avatar} aria-label="Me">
-        <Typography className={classes.avatarText}>
-          {mapCredentials()}
-        </Typography>
-        <div className={classes.dropdown}>
-          <ExitToApp />
+  handleDropdownClose = () => {
+    this.setState({
+      open: false
+    });
+  }
+
+  toggleDropdown = () => {
+    this.setState(({ open }) => ({
+      open: !open
+    }));
+  }
+
+  handleDropdownOpen = () => {
+    this.setState({
+      open: true
+    });
+  };
+
+  logout = () => {
+    localStorage.removeItem('token');
+    apolloClient.resetStore();
+  }
+
+  render() {
+    const { classes } = this.props;
+    const { open } = this.state;
+
+    return (
+      <div className="container">
+        <Button
+          className={classes.button}
+          variant="fab"
+          aria-label="Me"
+          onClick={this.handleDropdownOpen}
+        >
+          <Avatar sizes="60px 60px" className={classes.avatar}>{this.transformCredentials()}</Avatar>
+        </Button>
+        <div className={classnames('actions', { 'actions--hidden': !open })}>
+          <Popper open={open} transition disablePortal>
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{ transformOrigin: placement === 'center bottom' ? 'center bottom' : 'left bottom' }}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={this.handleDropdownClose}>
+                    <MenuList component="nav">
+                      <MenuItem dense>
+                        <ListItemText>Become a member</ListItemText>
+                      </MenuItem>
+                      <Divider />
+                      <MenuItem dense button onClick={this.logout}>
+                        <ListItemIcon>
+                          <ExitToApp />
+                        </ListItemIcon>
+                        <ListItemText>Log Out</ListItemText>
+                      </MenuItem>
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
         </div>
-        {/* <List disablePadding className={classes.dropdown}>
-          <ListItem disableGutters>
-            <ExitToApp />
-          </ListItem>
-        </List> */}
-      </ButtonBase>
-    </div>
-  );
-};
-
+      </div>
+    );
+  }
+}
 UserProfile.propTypes = {
   classes: PropTypes.shape().isRequired,
   firstName: PropTypes.string.isRequired,

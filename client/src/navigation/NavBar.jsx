@@ -10,20 +10,23 @@ import { withStyles } from '@material-ui/core/styles';
 import userProfileQuery from '../queries/GetUserProfile';
 import { openSnackbar } from '../common/Notifier';
 import { LoadingIcon, UserProfile } from '../common';
-import { SignUpButton } from '../authentication';
+import { SignInButton, SignUpButton } from '../authentication';
 import './nav-bar.scss';
 
 const style = {
   root: {
     backgroundColor: '#fff',
     boxShadow: 'none'
+  },
+  signInButton: {
+    margin: 20
   }
 };
 
 const NavBar = ({ classes }) => (
   <AppBar classes={{ root: classes.root }} position="sticky">
     <Toolbar className="navBar">
-      <Hidden xsDown>
+      <Hidden smDown>
         <div className="navBar_item navBar_item--centered">
           About Membership
         </div>
@@ -42,11 +45,20 @@ const NavBar = ({ classes }) => (
               return (<UserProfile firstName={firstName} lastName={lastName} />);
             }
             if (error) {
-              openSnackbar({ message: error.message, variant: 'info' });
+              openSnackbar({ message: error.message, variant: 'error' });
               localStorage.removeItem('token');
             }
 
-            return (<SignUpButton />);
+            return (
+              <div className="authentication">
+                <Hidden xsDown>
+                  <div className="authentication_signInButton">
+                    <SignInButton />
+                  </div>
+                </Hidden>
+                <SignUpButton />
+              </div>
+            );
           }}
         </Query>
       </div>

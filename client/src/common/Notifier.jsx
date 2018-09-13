@@ -87,7 +87,7 @@ class Notifier extends Component {
 
     return (
       <Snackbar
-        anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
         autoHideDuration={3000}
         key={message}
         open={open}

@@ -1,15 +1,19 @@
 import React from 'react';
-import './styles/App.scss';
+import { Route, Switch } from 'react-router-dom';
+import './App.scss';
 
-import NavBar from './navigation';
 import Notifier from './common/Notifier';
+import HomeStoriesPage from './pages/HomeStories';
+import StoryCreator from './pages/StoryCreator';
 
 const App = () => (
-  <div className="webPage">
+  <div>
     <Notifier />
-    <NavBar />
-    <div className="webPage_content" />
-    <div className="webPage_footer" />
+    <Switch>
+      <Route exact path="/" component={HomeStoriesPage} />
+      <Route path="/home" component={HomeStoriesPage} />
+      <Route path="/newStory" component={StoryCreator} />
+    </Switch>
   </div>
 );
 
