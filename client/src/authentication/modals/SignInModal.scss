@@ -9,13 +9,15 @@
   &--normal {
     top: 25%;
     left: 30%;
-    width: 40%;
+    width: 40vw;
+    height: auto;
     margin: auto;
   }
 
   &--fullScreen {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     left: 0;
     top: 0;
   }

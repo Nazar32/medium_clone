@@ -3,17 +3,9 @@ import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import { withStyles } from '@material-ui/core/styles';
 
 import LocalSignUp from '../local-signup/LocalSignUp';
 import './SignUpModal.scss';
-
-const styles = theme => ({
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5]
-  }
-});
 
 const SignUpModal = ({ fullScreen, isOpen, onClose }) => {
   let modalClassNames = [
@@ -23,7 +15,12 @@ const SignUpModal = ({ fullScreen, isOpen, onClose }) => {
   modalClassNames = modalClassNames.join(' ');
 
   return (
-    <Modal aria-labelledby="modal-title" open={isOpen} onClose={onClose}>
+    <Modal
+      style={{ overflow: 'scroll' }}
+      aria-labelledby="modal-title"
+      open={isOpen}
+      onClose={onClose}
+    >
       <div className={modalClassNames}>
         <h3 className="headline" id="modal-title">
           <span className="headline_title">Sign Up</span>
@@ -48,4 +45,4 @@ SignUpModal.defaultProps = {
   fullScreen: false
 };
 
-export default withStyles(styles)(SignUpModal);
+export default SignUpModal;

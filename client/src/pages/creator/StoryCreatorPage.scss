@@ -1,0 +1,15 @@
+.article {
+  &_header {
+    max-width: 700px;
+    margin: 2em auto;
+  }
+
+  &_content {
+    width: 100%;
+  }
+
+  &_footer {
+    max-width: 700px;
+    margin: 1em auto;
+  }
+}

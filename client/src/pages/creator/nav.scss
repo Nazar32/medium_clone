@@ -1,0 +1,32 @@
+.nav {
+  display: flex;
+  align-items: center;
+
+  .status {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    &_link {
+      display: inline-block;
+      text-decoration: none;
+      color: initial;
+    }
+
+    &_type {
+      margin: 0 10px;
+      font-weight: 600;
+      font-size: 0.9em;
+    }
+
+    &_sync {
+      margin: 0 10px;
+      opacity: 0.7;
+      font-size: 0.9em;
+    }
+  }
+  
+  .controls {
+
+  }
+}

@@ -85,7 +85,7 @@ class LocalSignUpForm extends Component {
       return this.setState({
         ...initialState,
         errors: {
-          submit: error
+          submit: error.message
         }
       });
     }
@@ -102,6 +102,7 @@ class LocalSignUpForm extends Component {
   handlePasswordValidation = () => {
     this.setState(({ errors, password, passwordRepeat }) => {
       const newErrors = { ...errors };
+      newErrors.submit = null;
 
       newErrors.password = password && password.length <= 3 ? 'Password must be longer then 3 symbols' : null;
 
@@ -124,6 +125,7 @@ class LocalSignUpForm extends Component {
   handleCredentialsValidation = () => {
     this.setState(({ errors, email }) => {
       const newErrors = { ...errors };
+      newErrors.submit = null;
 
       if (email) {
         newErrors.email = !isEmail(email) ? 'Incorrect email' : null;
@@ -172,7 +174,7 @@ class LocalSignUpForm extends Component {
   render() {
     const steps = this.getSteps();
     const {
-      loading, activeStep
+      errors, loading, activeStep
     } = this.state;
 
     return (
@@ -198,6 +200,11 @@ class LocalSignUpForm extends Component {
             onComplete={this.handleSubmit}
           />
         </div>
+        {
+          !!errors.submit && (
+            <Typography color="error">{errors.submit}</Typography>
+          )
+        }
       </form>
     );
   }

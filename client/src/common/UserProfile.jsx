@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -15,23 +16,22 @@ import './UserProfile.scss';
 
 const styles = () => ({
   button: {
-    boxShadow: 'none'
+    boxShadow: 'none',
+    width: 40,
+    height: 40
   },
   avatar: {
-    width: '100%',
-    height: 56,
+    height: 40,
+    width: 40,
     backgroundColor: green[900]
   }
 });
 
 // TODO accept list for dropdown components
 class UserProfile extends Component {
-  constructor() {
-    super();
-    this.state = {
-      open: false
-    };
-  }
+  state = {
+    open: false
+  };
 
   transformCredentials = () => {
     const { firstName, lastName } = this.props;
@@ -59,6 +59,9 @@ class UserProfile extends Component {
   logout = () => {
     localStorage.removeItem('token');
     apolloClient.resetStore();
+
+    const { history } = this.props;
+    history.push('/');
   }
 
   render() {
@@ -73,7 +76,7 @@ class UserProfile extends Component {
           aria-label="Me"
           onClick={this.handleDropdownOpen}
         >
-          <Avatar sizes="60px 60px" className={classes.avatar}>{this.transformCredentials()}</Avatar>
+          <Avatar className={classes.avatar}>{this.transformCredentials()}</Avatar>
         </Button>
         <div className={classnames('actions', { 'actions--hidden': !open })}>
           <Popper open={open} transition disablePortal>
@@ -109,7 +112,10 @@ class UserProfile extends Component {
 UserProfile.propTypes = {
   classes: PropTypes.shape().isRequired,
   firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired
+  lastName: PropTypes.string.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 
-export default withStyles(styles)(UserProfile);
+export default withRouter(withStyles(styles)(UserProfile));

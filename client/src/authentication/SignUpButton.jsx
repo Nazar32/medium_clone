@@ -26,7 +26,7 @@ class SignUpButton extends Component {
 
     return (
       <Fragment>
-        <Hidden xsDown>
+        <Hidden smDown>
           <Button variant="outlined" color="primary" onClick={this.openSignUpModal}>
             <Typography>
               Get Started
@@ -34,7 +34,7 @@ class SignUpButton extends Component {
           </Button>
           <SignUpModal isOpen={isSignUpOpen} onClose={this.closeSignUpModal} />
         </Hidden>
-        <Hidden smUp>
+        <Hidden mdUp>
           <Button variant="outlined" color="primary" onClick={this.openSignUpModal}>
             <Typography>
               Get Started

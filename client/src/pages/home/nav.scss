@@ -9,6 +9,14 @@
     text-align: center;
   }
 
+  .navBar_item--right {
+    text-align: right;
+  }
+
+  .navBar_item--left {
+    text-align: left;
+  }
+
   .navBar_title {
     font-size: 2em;
     font-weight: bolder;
@@ -22,5 +30,10 @@
     &_signInButton { 
       margin-right: 1em;
     }
+  }
+
+  .logoLink {
+    text-decoration: none;
+    color: initial;
   }
 }
