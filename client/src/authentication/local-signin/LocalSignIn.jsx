@@ -54,7 +54,13 @@ class LocalSignIn extends Component {
     event.preventDefault();
     event.stopPropagation();
 
-    const response = await mutation({ variables: { email, password } });
+    const response = await mutation({
+      variables: {
+        input: {
+          email, password
+        }
+      }
+    });
     const { data: { logIn: { token } } } = response;
     localStorage.setItem('token', token);
     client.resetStore();

@@ -72,7 +72,9 @@ class LocalSignUpForm extends Component {
     try {
       const { data: { signUp: { token } } } = await mutate({
         variables: {
-          firstName, lastName, email, password
+          input: {
+            firstName, lastName, email, password
+          }
         }
       });
 

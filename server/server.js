@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const config = require('./config');
-const schema = require('./schema');
+const schema = require('./api/schema');
 const app = express();
 
 /**
