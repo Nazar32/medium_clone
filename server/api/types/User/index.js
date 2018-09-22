@@ -1,7 +1,11 @@
-const UserType = require('./UserType');
+const UserInterface = require('./UserInterface');
 const UserTokenType = require('./UserTokenType');
+const MeType = require('./MeType');
+const AuthorType = require('./AuthorType');
 
 module.exports = {
-  UserType,
-  UserTokenType
+  UserInterface,
+  UserTokenType,
+  MeType,
+  AuthorType
 };

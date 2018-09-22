@@ -4,7 +4,7 @@
   "description": "Server side application for medium clone",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -14,10 +14,12 @@
   "author": "trudgajs@gmail.com",
   "license": "MIT",
   "dependencies": {
+    "bunyan": "^1.8.12",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "express-bearer-token": "^2.2.0",
     "express-graphql": "^0.6.12",
+    "faker": "^4.1.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "jsonwebtoken": "^8.3.0",
@@ -29,6 +31,7 @@
   },
   "devDependencies": {
     "eslint": "^5.0.1",
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-google": "^0.9.1",
+    "gulp": "^3.9.1"
   }
 }

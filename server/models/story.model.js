@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('./user.model');
+const { Schema } = mongoose;
 const StorySection = require('./storySection.model');
 
 const StorySchema = new mongoose.Schema({
@@ -7,11 +7,24 @@ const StorySchema = new mongoose.Schema({
     type: String
   },
   author: {
-    type: User,
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  sections: [StorySection.schema],
+  isPublished: {
+    type: Boolean,
+    default: false,
     required: true
   },
-  sections: {
-    type: [StorySection]
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    required: true
+  },
+  updatedAt: {
+    type: Date,
+    default: Date,
+    required: true
   }
 });
 

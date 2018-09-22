@@ -1,20 +1,23 @@
 const graphql = require('graphql');
 const {
   GraphQLObjectType,
+  GraphQLID,
   GraphQLString,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLList
 } = graphql;
+const StorySectionType = require('./StorySectionType');
 
 const StoryType = new GraphQLObjectType({
   name: 'Story',
   fields: () => {
-    const { UserType } = require('../User');
-    
+    const { AuthorType } = require('../User');
+
     return {
-      id: { type: new GraphQLNonNull(GraphQLString) },
+      id: { type: new GraphQLNonNull(GraphQLID) },
       title: { type: GraphQLString },
-      author: { type: UserType },
-      sections: { type: GraphQLString }
+      author: { type: new GraphQLNonNull(AuthorType) },
+      sections: { type: new GraphQLList(StorySectionType) }
     };
   }
 });

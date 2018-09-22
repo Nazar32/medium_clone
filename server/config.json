@@ -3,7 +3,8 @@
     "port": 4000
   },
   "storage": {
-    "connection": "mongodb://medium:qwerty123@ds129051.mlab.com:29051/medium"
+    "connection": "mongodb://medium:qwerty123@ds129051.mlab.com:29051/medium",
+    "fakeConnection": "mongodb://admin:qwerty123@ds111623.mlab.com:11623/medium_fake"
   },
   "authentication": {
     "token": {

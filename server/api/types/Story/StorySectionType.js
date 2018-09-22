@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 const {
   GraphQLObjectType,
-  GraphQLString,
+  GraphQLID,
   GraphQLNonNull,
   GraphQLList
 } = graphql;
@@ -10,7 +10,9 @@ const StoryItemType = require('./StoryItemType');
 const StorySectionType = new GraphQLObjectType({
   name: 'StorySection',
   fields: {
-    id: { type: new GraphQLNonNull(GraphQLString) },
+    id: { 
+      type: new GraphQLNonNull(GraphQLID) 
+    },
     items: {
       type: new GraphQLList(StoryItemType)
     }
