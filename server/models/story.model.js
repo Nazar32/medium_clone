@@ -10,6 +10,9 @@ const StorySchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  brief: {
+    type: String
+  },
   sections: [StorySection.schema],
   isPublished: {
     type: Boolean,

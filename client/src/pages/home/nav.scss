@@ -1,5 +1,11 @@
 .navBar {
   display: flex;
+  width: auto;
+
+  @media screen and (min-width: 1000px) {
+    width: 1000px;
+    margin: 0 auto;
+  }
 
   .navBar_item {
     flex: 1;
@@ -25,7 +31,7 @@
   .authentication {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 
     &_signInButton { 
       margin-right: 1em;

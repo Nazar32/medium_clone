@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 import GenericPage from '../generic/GenericPage';
 import StoryCreatorNav from './StoryCreatorNav';
 import { AuthRequired } from '../../authentication';
-import { UserDescription } from '../../users';
+import { Author } from '../../users';
 import { StoryEditor } from '../../stories';
 import './StoryCreatorPage.scss';
 
@@ -12,7 +12,7 @@ const StoryCreator = () => (
     <GenericPage navBar={(<StoryCreatorNav />)}>
       <article className="article">
         <header className="article_header">
-          <UserDescription />
+          <Author />
         </header>
         <div className="article_content">
           <StoryEditor />

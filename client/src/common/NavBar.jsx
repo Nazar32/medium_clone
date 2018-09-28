@@ -5,9 +5,7 @@ import { AppBar, withStyles } from '@material-ui/core';
 const styles = {
   root: {
     backgroundColor: '#fff',
-    boxShadow: 'none',
-    maxWidth: 1000,
-    margin: '0 auto'
+    boxShadow: 'none'
   }
 };
 

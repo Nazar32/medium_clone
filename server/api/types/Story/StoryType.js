@@ -16,6 +16,7 @@ const StoryType = new GraphQLObjectType({
     return {
       id: { type: new GraphQLNonNull(GraphQLID) },
       title: { type: GraphQLString },
+      brief: { type: GraphQLString },
       author: { type: new GraphQLNonNull(AuthorType) },
       sections: { type: new GraphQLList(StorySectionType) }
     };

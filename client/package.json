@@ -36,6 +36,7 @@
     "graphql-tag": "^2.9.2",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "moment": "^2.22.2",
     "node-sass": "^4.9.3",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
@@ -47,6 +48,7 @@
     "react-apollo": "^2.1.9",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.0",
+    "react-moment": "^0.7.9",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
@@ -54,6 +56,7 @@
     "resolve": "1.6.0",
     "sass-loader": "^7.1.0",
     "style-loader": "0.19.0",
+    "styled-components": "^3.4.9",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
     "validator": "^10.7.1",
@@ -103,6 +106,9 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      "styled-components"
     ]
   },
   "eslintConfig": {
@@ -110,6 +116,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
+    "babel-plugin-styled-components": "^1.7.1",
     "eslint-config-react-app": "^2.1.0",
     "webpack": "^3.8.1"
   }

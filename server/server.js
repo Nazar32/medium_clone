@@ -34,6 +34,8 @@ app.use('/graphql', graphql({
  */
 const connectionStr = process.env.NODE_ENV === 'production' ? config.storage.connection : config.storage.fakeConnection;
 mongoose.connect(connectionStr, {
+  keepAlive: config.keepAlive,
+  socketTimeoutMS: config.socketTimeoutMS,
   useNewUrlParser: true
 });
 const db = mongoose.connection;

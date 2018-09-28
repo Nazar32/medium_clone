@@ -1,5 +1,5 @@
-import UserDescription from './description/UserDescription';
+import Author from './Author';
 
 export {
-  UserDescription // eslint-disable-line
+  Author // eslint-disable-line
 };

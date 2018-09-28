@@ -1,14 +1,8 @@
 const mongoose = require('mongoose');
+const StoryItem = require('./StoryItem.model');
 
 const StorySectionSchema = new mongoose.Schema({
-  items: [{
-    variant: {
-      type: Number
-    },
-    content: {
-      type: String
-    }
-  }]
+  items: [StoryItem.schema]
 });
 
 const StorySection = mongoose.model('StorySection', StorySectionSchema);

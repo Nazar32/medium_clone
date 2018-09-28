@@ -11,7 +11,7 @@ const generateUsers = async (amount) => {
   const users = [];
   for (let i = 0; i < amount; i++) {
     users.push({
-      firstName: faker.name.findName(),
+      firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
       password: faker.internet.password()
@@ -27,24 +27,26 @@ const generateStories = async (amount, users) => {
     const author = users[Math.floor(faker.random.number({ min: 0, max: users.length - 1 }))];
 
     const sections = [];
-    const sectionsAmount = Math.floor(faker.random.number({ min: 1, max: 5 }));
+    const sectionsAmount = Math.floor(faker.random.number({ min: 1, max: 6 }));
     for (let i = 0; i < sectionsAmount; i++) {
+      const items = [];
+      const itemsAmount = Math.floor(faker.random.number({ min: 4, max: 15}));
+
+      for (let i = 0; i < itemsAmount; i++) {
+        items.push({
+          variant: 1,
+          content: faker.lorem.paragraph()
+        });
+      }
+
       sections.push({
-        items: [
-          {
-            variant: 1,
-            content: faker.lorem.paragraph()
-          },
-          {
-            variant: 1,
-            content: faker.lorem.paragraph()
-          }
-        ]
+        items
       });
     }
 
     stories.push({
       title: faker.lorem.sentence(),
+      brief: faker.lorem.sentences(),
       author: author.id,
       sections,
       isPublished: true

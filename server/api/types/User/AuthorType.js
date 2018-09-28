@@ -18,7 +18,7 @@ const AuthorType = new GraphQLObjectType({
     const { StoryType } = require('../Story');
 
     return {
-      id: { type: GraphQLID },
+      id: { type: new GraphQLNonNull(GraphQLID) },
       firstName: { type: GraphQLString },
       lastName: { type: GraphQLString },
       stories: {

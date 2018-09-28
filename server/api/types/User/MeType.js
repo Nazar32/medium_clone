@@ -16,7 +16,7 @@ const MeType = new GraphQLObjectType({
     UserInterface
   ],
   fields: () => ({
-    id: { type: GraphQLID },
+    id: { type: new GraphQLNonNull(GraphQLID) },
     firstName: { type: GraphQLString },
     lastName: { type: GraphQLString },
     stories: {
