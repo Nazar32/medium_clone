@@ -19,7 +19,7 @@ const LoginUserInput = new GraphQLInputObjectType({
 
 module.exports = {
   type: UserTokenType,
-  description: 'This mutation will provide user with authentiction token',
+  description: 'This mutation will provide user with authentication token',
   args: {
     input: { type: new GraphQLNonNull(LoginUserInput) }
   },
